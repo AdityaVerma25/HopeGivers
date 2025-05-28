@@ -1,0 +1,16 @@
+import React from 'react'
+import './backtoLogin.css'
+import { FaArrowLeft } from "react-icons/fa6";
+
+const BackToLogin = () => {
+  return (
+    <div className='ui_backToLogin'>
+        <FaArrowLeft />
+        <span>
+            Back to Login
+        </span>
+    </div>
+  )
+}
+
+export default BackToLogin
