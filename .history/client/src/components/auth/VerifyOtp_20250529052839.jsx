@@ -117,6 +117,8 @@ const VerifyOtp = () => {
             if (result?.status) {
                 toast.success(result?.message);
                 console.log(result);
+
+                // ✅ Save the token in localStorage
                 localStorage.setItem('passToken', result.token); // Make sure your backend returns token in response
 
                 navigate('/password/update'); // Redirect to password update page after successful verification

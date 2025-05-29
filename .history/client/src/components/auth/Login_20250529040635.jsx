@@ -49,7 +49,7 @@ const Login = () => {
                 toast.success(result?.message);
                 // Redirect to dashboard or home page after successful login
                 localStorage.setItem('accessToken', result?.token); 
-                navigate('/register');
+                navigate
             }
 
             console.log(result);

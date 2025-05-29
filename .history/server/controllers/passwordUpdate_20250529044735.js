@@ -36,7 +36,7 @@ const updatePassword = async (req, res, next) => {
         await findedUser.save();
         console.log('After:', findedUser.email);
 
-        // console.log(findedUser);
+        console.log(findedUser);
 
         res.status(200).json({
             message: 'Password updated successfully',

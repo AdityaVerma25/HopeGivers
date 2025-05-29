@@ -6,7 +6,7 @@ const updatePassword = async (req, res, next) => {
     const { token, password, confirmPassword } = req.body;
 
     try {
-        const findedUser = await User.findOne({ 'otp.token': token });
+        const findedUser = await User.findOne({ 'otp.token': token }).select('otp');
         if (!findedUser) {
             const error = new Error('Something went wrong, please try again');
             error.statusCode = 404;

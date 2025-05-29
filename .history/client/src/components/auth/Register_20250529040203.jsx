@@ -1,43 +1,47 @@
 import React from 'react'
 import './auth.css'
 import Input from '../ui/Input'
-import Button from '../ui/Button';
 import { BiDonateBlood } from "react-icons/bi";
-import { Link } from 'react-router-dom';
+import Button from '../ui/Button';
+import BackToLogin from '../ui/BackToLogin';
 import HomePage from './HomePage';
-import toast from 'react-hot-toast';
-import apis from '../../utils/apis';
 import LoadingButton from '../ui/LoadingButton';
+import apis from '../../utils/apis';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Register = () => {
 
+    const [name, setName] = React.useState('');
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [loading,setLoading] = React.useState(false);
     const navigate = useNavigate();
 
+    const nameChange = (e) => {
+        setName(e.target.value);
+    };
+
     const emailChange = (e) => {
         setEmail(e.target.value);
-    };
+    }
 
     const passwordChange = (e) => {
         setPassword(e.target.value);
-    };
-
+    }
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        // Handle login logic here
-      
+        // Handle registration logic here
+
         try {
             setLoading(true);
-            const response = await fetch(apis().loginUser, {
+            const response = await fetch(apis().registerUser, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email, password })
+                body: JSON.stringify({name,email,password})
             });
 
             const result = await response.json();
@@ -47,35 +51,35 @@ const Login = () => {
             }
             if (result?.status) {
                 toast.success(result?.message);
-                // Redirect to dashboard or home page after successful login
-                localStorage.setItem('accessToken', result?.token); 
-                navigate('/register');
+                navigate('/login'); // Redirect to login page after successful registration
             }
 
             console.log(result);
 
-
         } catch (error) {
             toast.error(error.message);
         }
+        console.log(name, email, password);
 
 
-        console.log(email, password);
-        // You can add your login API call here         
-    }
+    };
+
     return (
         <div className='auth_main'>
             <div className='auth_left'>
                 <HomePage />
             </div>
-
             <div className='auth_right'>
                 <form onSubmit={submitHandler}>
                     <div className="auth_container">
                         <div className='auth_header'>
                             <BiDonateBlood />
-                            <p className='auth_heading'>Welcome Back</p>
-                            <p className='auth_title'>Login to continue</p>
+                            <p className='auth_heading'>Welcome</p>
+                            <p className='auth_title'>Create your account</p>
+                        </div>
+                        <div className='auth_item'>
+                            <label> Name *</label>
+                            <Input onChange={nameChange} type='text' required placeholder='enter your name' />
                         </div>
                         <div className='auth_item'>
                             <label> Email *</label>
@@ -87,12 +91,11 @@ const Login = () => {
                         </div>
                         <div className='auth_action'>
                             <Button>
-                                <LoadingButton loading={loading} title="Login" />
+                                <LoadingButton loading={loading} title="Register" />
                             </Button>
                         </div>
-                        <div className='auth_options'>
-                            <Link to='/register' className='auth_link'>Create new account?</Link>
-                            <Link to='/forget/password' className='auth_link'>Forget password</Link>
+                        <div>
+                            <BackToLogin />
                         </div>
                     </div>
                 </form>
@@ -101,4 +104,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Register

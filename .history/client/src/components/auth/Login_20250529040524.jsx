@@ -15,7 +15,7 @@ const Login = () => {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [loading,setLoading] = React.useState(false);
-    const navigate = useNavigate();
+    const navigate=React.useNavigate
 
     const emailChange = (e) => {
         setEmail(e.target.value);
@@ -49,7 +49,7 @@ const Login = () => {
                 toast.success(result?.message);
                 // Redirect to dashboard or home page after successful login
                 localStorage.setItem('accessToken', result?.token); 
-                navigate('/register');
+                navigate
             }
 
             console.log(result);

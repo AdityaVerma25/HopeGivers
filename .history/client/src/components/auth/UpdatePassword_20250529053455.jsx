@@ -7,11 +7,9 @@ import { useNavigate } from 'react-router-dom';
 import HomePage from './HomePage';
 import { toast } from 'react-hot-toast';
 import apis from '../../utils/apis'; // Adjust the import path as necessary
-import LoadingButton from '../ui/LoadingButton';
 
 const UpdatePassword = () => {
 
-    const [loading, setLoading] = React.useState(false);
     const [password, setPassword] = React.useState('');
     const [confirmPassword, setConfirmPassword] = React.useState('');
     const navigate = useNavigate();
@@ -38,7 +36,7 @@ const UpdatePassword = () => {
                 toast.error('Token missing. Please restart the password reset process.');
                 return;
             }
-            setLoading(true);
+
             const response = await fetch(apis().updatePassword, { // Adjust the endpoint as needed
                 method: 'POST',
                 headers: {
@@ -48,7 +46,6 @@ const UpdatePassword = () => {
             });
 
             const result = await response.json();
-            setLoading(false);
             if (!response.ok) {
                 throw new Error(result?.message || 'Failed to update password');
             }
@@ -57,7 +54,7 @@ const UpdatePassword = () => {
                 toast.success(result?.message);
                 localStorage.removeItem('passToken');
                 navigate('/login'); // Redirect to login page after successful update
-                 // Clear any existing access token
+                localStorage.removeItem(''); // Clear any existing access token
             }
         } catch (error) {
             toast.error(error.message || 'Something went wrong');
@@ -87,9 +84,7 @@ const UpdatePassword = () => {
                             <Input onChange={confirmPasswordChange} type='password' required placeholder='confirm your new password' />
                         </div>
                         <div className='auth_action'>
-                            <Button>
-                                <LoadingButton loading={loading} title="Update Password" />
-                            </Button>
+                            <Button>Update Password</Button>
                         </div>
                         <div>
                             <BackToLogin />

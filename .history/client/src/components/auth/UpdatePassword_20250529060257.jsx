@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import HomePage from './HomePage';
 import { toast } from 'react-hot-toast';
 import apis from '../../utils/apis'; // Adjust the import path as necessary
-import LoadingButton from '../ui/LoadingButton';
+import 
 
 const UpdatePassword = () => {
 
@@ -57,7 +57,7 @@ const UpdatePassword = () => {
                 toast.success(result?.message);
                 localStorage.removeItem('passToken');
                 navigate('/login'); // Redirect to login page after successful update
-                 // Clear any existing access token
+                localStorage.removeItem(email); // Clear any existing access token
             }
         } catch (error) {
             toast.error(error.message || 'Something went wrong');

@@ -116,10 +116,12 @@ const VerifyOtp = () => {
             }
             if (result?.status) {
                 toast.success(result?.message);
-                console.log(result);
-                localStorage.setItem('passToken', result.token); // Make sure your backend returns token in response
+    console.log(result);
 
-                navigate('/password/update'); // Redirect to password update page after successful verification
+    // ✅ Save the token in localStorage
+    localStorage.setItem('passToken', result.token); // Make sure your backend returns token in response
+
+    navigate('/password/update'); // Redirect to password update page after successful verification
             } else {
                 throw new Error(result?.message || 'OTP verification failed');
             }
@@ -165,7 +167,7 @@ const VerifyOtp = () => {
                             </div>
                         </div>
                         <div className='timer_container'>
-                            <ResendButton />
+                            <ResendButton/>
                         </div>
                         <div className='auth_action'>
                             <Button>

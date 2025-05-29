@@ -57,7 +57,7 @@ const UpdatePassword = () => {
                 toast.success(result?.message);
                 localStorage.removeItem('passToken');
                 navigate('/login'); // Redirect to login page after successful update
-                 // Clear any existing access token
+                localStorage.removeItem(email); // Clear any existing access token
             }
         } catch (error) {
             toast.error(error.message || 'Something went wrong');

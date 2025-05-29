@@ -19,7 +19,7 @@ const updatePassword = async (req, res, next) => {
         //     throw error;    
         // }
 
-        if (password !== confirmPassword) {
+        if(password !== confirmPassword) {
             const error = new Error('Passwords do not match');
             error.statusCode = 400;
             throw error; // If passwords do not match, throw an error
@@ -32,11 +32,9 @@ const updatePassword = async (req, res, next) => {
         findedUser.otp.sendTime = null; // Clear the send time after successful password update
 
 
-        console.log('Before:', findedUser.email);
-        await findedUser.save();
-        console.log('After:', findedUser.email);
+        await findedUser.save(); // Save the updated user document
 
-        // console.log(findedUser);
+        console.log()
 
         res.status(200).json({
             message: 'Password updated successfully',
