@@ -51,6 +51,11 @@ const Super = () => {
         return <Navigate to="/login" />;
     }
 
+    return (
+        <div>
+            Super
+        </div>
+    )
 }
 
 export default Super

@@ -14,6 +14,6 @@ router.post('/forget/password', forgetPasswordController);
 router.post('/otp/verify', verifyOtpController);
 router.post('/otp/time', getOtpTimeController);
 router.post('/password/update', updatePasswordController);
-router.post('/get/access', getAccessController);
+r
 
 module.exports = router;

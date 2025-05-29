@@ -6,7 +6,7 @@ const forgetPasswordController = require('../controllers/forgetPassword');
 const verifyOtpController = require('../controllers/verifyOtp');
 const getOtpTimeController = require('../controllers/getOtpTime');
 const updatePasswordController = require('../controllers/passwordUpdate');
-const getAccessController = require('../controllers/getAccess');
+con
 
 router.post('/register', registerController);
 router.post('/login', loginController);
@@ -14,6 +14,6 @@ router.post('/forget/password', forgetPasswordController);
 router.post('/otp/verify', verifyOtpController);
 router.post('/otp/time', getOtpTimeController);
 router.post('/password/update', updatePasswordController);
-router.post('/get/access', getAccessController);
+
 
 module.exports = router;

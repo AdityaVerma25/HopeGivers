@@ -10,7 +10,7 @@ const apis = () => {
         otpVerify:`${local}user/otp/verify`,
         getOtpTime:`${local}user/otp/time`,
         updatePassword:`${local}user/password/update`,
-        getAccess:`${local}user/get/access`
+        
     }   
 
     return list;

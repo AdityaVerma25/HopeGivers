@@ -9,11 +9,10 @@ const Super = () => {
     const [isAuth, setIsAuth] = React.useState(false);
     const [loading, setLoading] = React.useState(true);
 
-
+ 
     useEffect(() => {
-        const getRouteAccess = async () => {
+        const getRouteAccess= async () => {
             try {
-                setLoading(true);
                 const response = await fetch(apis().getAccess, {
                     method: 'POST',
                     headers: {
@@ -26,18 +25,16 @@ const Super = () => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                if (result?.status) {
-                    setLoading(false);
-                    setIsAuth(true);
-                } 
 
+                
+                setIsAuth(data.status);
             } catch (error) {
                 toast.error(error.message);
                 setIsAuth(false);
-            } 
+            } finally {
+                setLoading(false);
+            }
         }
-
-        getRouteAccess();
     }, []);
 
 
@@ -51,6 +48,11 @@ const Super = () => {
         return <Navigate to="/login" />;
     }
 
+    return (
+        <div>
+            Super
+        </div>
+    )
 }
 
 export default Super

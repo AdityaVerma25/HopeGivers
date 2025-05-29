@@ -24,7 +24,8 @@ const Super = () => {
 
                 const result = await response.json();
                 if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    throw new Er
+                    ror('Network response was not ok');
                 }
                 if (result?.status) {
                     setLoading(false);
@@ -51,6 +52,11 @@ const Super = () => {
         return <Navigate to="/login" />;
     }
 
+    return (
+        <div>
+            Super
+        </div>
+    )
 }
 
 export default Super

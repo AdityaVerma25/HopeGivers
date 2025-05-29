@@ -13,7 +13,6 @@ const Super = () => {
     useEffect(() => {
         const getRouteAccess = async () => {
             try {
-                setLoading(true);
                 const response = await fetch(apis().getAccess, {
                     method: 'POST',
                     headers: {
@@ -34,10 +33,10 @@ const Super = () => {
             } catch (error) {
                 toast.error(error.message);
                 setIsAuth(false);
-            } 
+            } finally {
+                setLoading(false);
+            }
         }
-
-        getRouteAccess();
     }, []);
 
 
@@ -51,6 +50,11 @@ const Super = () => {
         return <Navigate to="/login" />;
     }
 
+    return (
+        <div>
+            Super
+        </div>
+    )
 }
 
 export default Super
