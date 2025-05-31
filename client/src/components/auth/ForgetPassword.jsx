@@ -7,6 +7,8 @@ import HomePage from './HomePage'
 import toast from 'react-hot-toast';
 import apis from '../../utils/apis';
 import LoadingButton from '../ui/LoadingButton';
+import Navbar from '../navbar/Navbar'
+import Footer from '../navbar/Footer'
 
 
 const ForgetPassword = () => {
@@ -57,34 +59,46 @@ const ForgetPassword = () => {
     };
 
     return (
-        <div className='auth_main'>
-            <div className='auth_left'>
-                 <HomePage />
+      <div>
+        <Navbar />
+
+        <div className="auth_main">
+          <div className="auth_left">
+            <HomePage />
+          </div>
+          <div className="auth_right">
+            <form onSubmit={submitHandler}>
+              <div className="auth_container">
+                <div className="auth_header">
+                  <p className="auth_heading">Forget Password</p>
+                  <p className="auth_title">
+                    Enter your email to reset password
+                  </p>
+                </div>
+                <div className="auth_item">
+                  <label> Email *</label>
+                  <Input
+                    onChange={emailChange}
+                    type="email"
+                    required
+                    placeholder="enter your email"
+                  />
+                </div>
+                <div className="auth_action">
+                  <Button>
+                    <LoadingButton loading={loading} title="Sent OTP" />
+                  </Button>
+                </div>
+                <div>
+                  <BackToLogin />
+                </div>
+              </div>
+            </form>
+          </div>
             </div>
-            <div className='auth_right'>
-                <form onSubmit={submitHandler}>
-                    <div className="auth_container">
-                        <div className='auth_header'>
-                            <p className='auth_heading'>Forget Password</p>
-                            <p className='auth_title'>Enter your email to reset password</p>
-                        </div>
-                        <div className='auth_item'>
-                            <label> Email *</label>
-                            <Input onChange={emailChange} type='email' required placeholder='enter your email' />
-                        </div>
-                        <div className='auth_action'>
-                            <Button>
-                                <LoadingButton loading={loading} title="Sent OTP" />
-                            </Button>
-                        </div>
-                        <div>
-                            <BackToLogin />
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    )
+            <Footer/>
+      </div>
+    );
 }
 
 export default ForgetPassword
