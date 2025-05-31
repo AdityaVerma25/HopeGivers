@@ -1,5 +1,6 @@
 import React from 'react';
-import Navbar from '../components/navbar/Navbar';
+import Navbar from './components/navbar/Navbar';
+import RegistrationForm from './pages/RegistrationPage';
 
 const Home = () => {
     return (
@@ -8,6 +9,7 @@ const Home = () => {
             <div style={{ padding: '20px' }}>
                 <h1>Welcome to the Home Page</h1>
             </div>
+            <RegistrationForm />
         </>
     );
 };
